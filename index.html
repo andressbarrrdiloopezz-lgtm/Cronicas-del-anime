@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAGA MULTIVERSAL // TERMINAL</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bangers&display=swap">
+    <style>
+        body { margin: 0; background: #000; color: #00e5ff; font-family: 'Share Tech Mono', monospace; overflow: hidden; }
+        #terminal { height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; }
+        .scanlines { position: fixed; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%); background-size: 100% 3px; z-index: 1000; pointer-events: none; }
+        
+        /* Contenedores de archivos */
+        .archivo { display: none; width: 90%; max-width: 750px; flex-direction: column; z-index: 10; border: 2px solid; padding: 30px; background: rgba(5,5,5,0.9); }
+        .archivo.activo { display: flex; animation: aparece 0.3s ease-out; }
+
+        @keyframes aparece { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        /* Estilos de los expedientes */
+        .exp-header { font-family: 'Bangers'; font-size: 2rem; margin: 0 0 15px 0; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 10px; }
+        .lyrics { font-style: italic; color: #fff; margin: 15px 0; line-height: 1.4; padding: 15px; background: rgba(255,255,255,0.05); border-left: 4px solid; }
+        .report { font-size: 0.9rem; color: #aaa; line-height: 1.6; }
+        .tag { font-weight: bold; text-decoration: underline; }
+
+        /* Colores específicos */
+        .naranja { border-color: #ff4500; color: #ff4500; }
+        .verde { border-color: #00ff00; color: #00ff00; }
+        .purpura { border-color: #a020f0; color: #a020f0; }
+        .piedra { border-color: #777; color: #bbb; }
+        .luz { border-color: #fff; color: #fff; box-shadow: 0 0 20px #fff; }
+        .derrota { border-color: #f00; color: #f00; }
+        .dorado { border-color: #ffd700; color: #ffd700; }
+        .metal { border-color: #444; color: #888; }
+        .blanco { border-color: #fff; color: #fff; }
+        .cosmico { border-color: #ffca28; color: #ffca28; background: #000320; }
+        .cian { border-color: #00e5ff; color: #00e5ff; box-shadow: 0 0 30px #00e5ff; }
+
+        /* Botón */
+        .btn { background: #fff; color: #000; border: none; padding: 15px; margin-top: 20px; font-family: inherit; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; }
+        .btn:hover { background: #ffd700; }
+
+        .bar-ext { height: 10px; background: #222; margin-top: 15px; border: 1px solid #00e5ff; }
+        .bar-int { height: 100%; width: 50%; background: #00e5ff; animation: carga 2s infinite alternate; }
+        @keyframes carga { from { width: 10%; } to { width: 95%; } }
+    </style>
+</head>
+<body>
+
+<div id="terminal">
+    <div class="scanlines"></div>
+
+    <div id="arc-1" class="archivo activo naranja">
+        <h2 class="exp-header">EXPEDIENTE 01 // EL DESPERTAR</h2>
+        <div class="lyrics">"Han pasado veinte años, el silencio fue un disfraz, la paz era una sombra, un suspiro de cristal..."</div>
+        <p class="report"><span class="tag">ESTADO:</span> El Multiverso ha despertado tras décadas de falsa calma. Los héroes han envejecido pero la amenaza es inminente.</p>
+        <button class="btn" onclick="ir(2)">Siguiente >></button>
+    </div>
+
+    <div id="arc-2" class="archivo verde">
+        <h2 class="exp-header">EXPEDIENTE 02 // EL PULSO</h2>
+        <div class="lyrics">"Un rayo verde cruzó el cielo estrellado, el equilibrio del mundo ha sido quebrantado..."</div>
+        <p class="report"><span class="tag">ALERTA:</span> Radiación multiversal detectada. Los brazaletes se han activado y no pueden ser removidos de los elegidos.</p>
+        <button class="btn" onclick="ir(3)">Siguiente >></button>
+    </div>
+
+    <div id="arc-3" class="archivo purpura">
+        <h2 class="exp-header">EXPEDIENTE 03 // LA ISLA</h2>
+        <div class="lyrics">"En el centro de la niebla, una isla apareció, donde el tiempo se detiene y la lógica murió..."</div>
+        <p class="report"><span class="tag">AVISO:</span> Convergencia en el Punto Cero. Los seis héroes se reúnen para la primera batalla.</p>
+        <button class="btn" onclick="ir(4)">Siguiente >></button>
+    </div>
+
+    <div id="arc-4" class="archivo piedra">
+        <h2 class="exp-header">EXPEDIENTE 04 // EL BOTÓN</h2>
+        <div class="lyrics">"Saitama miró el botón con total indiferencia, activando un mecanismo de antigua procedencia..."</div>
+        <p class="report"><span class="tag">HECHO:</span> Se ha desbloqueado la entrada a las ruinas ancestrales. El mecanismo responde solo a la falta de miedo.</p>
+        <button class="btn" onclick="ir(5)">Siguiente >></button>
+    </div>
+
+    <div id="arc-5" class="archivo luz">
+        <h2 class="exp-header">EXPEDIENTE 05 // EL SANTUARIO</h2>
+        <div class="lyrics">"Una luz que no ciega, que invita a subir, el poder de los dioses empieza a rugir..."</div>
+        <p class="report"><span class="tag">MEJORA:</span> Los brazaletes han potenciado el Ki, Haki y Chakra a niveles nunca antes registrados.</p>
+        <button class="btn" onclick="ir(6)">Siguiente >></button>
+    </div>
+
+    <div id="arc-6" class="archivo derrota">
+        <h2 class="exp-header">EXPEDIENTE 06 // LA CAÍDA</h2>
+        <div class="lyrics">"Goku cayó primero, su aura se apagó, el escudo de Luffy en mil trozos voló..."</div>
+        <p class="report"><span class="tag">CRÍTICO:</span> La Sombra en el Trono ha neutralizado al equipo en segundos. Esperanza: 0.1%.</p>
+        <button class="btn" onclick="ir(7)">Siguiente >></button>
+    </div>
+
+    <div id="arc-7" class="archivo dorado">
+        <h2 class="exp-header">EXPEDIENTE 07 // EL SALVADOR</h2>
+        <div class="lyrics">"Un tajo perfecto la noche rompió, el héroe misterioso la vida les devolvió..."</div>
+        <p class="report"><span class="tag">REGISTRO:</span> Un espadachín desconocido ha repelido a la Sombra y sanado las heridas de los héroes.</p>
+        <button class="btn" onclick="ir(8)">Siguiente >></button>
+    </div>
+
+    <div id="arc-8" class="archivo metal">
+        <h2 class="exp-header">EXPEDIENTE 08 // LA PUERTA</h2>
+        <div class="lyrics">"Llegaron al fondo, a un vacío imponente, una puerta gigante se alzó frente a frente..."</div>
+        <p class="report"><span class="tag">NOTAS:</span> "Aquí está la razón de mi falta de rostro", dice el guía. La llave es la unión de sus energías.</p>
+        <button class="btn" onclick="ir(9)">Siguiente >></button>
+    </div>
+
+    <div id="arc-9" class="archivo blanco">
+        <h2 class="exp-header">EXPEDIENTE 09 // EL SELLO</h2>
+        <div class="lyrics">"El metal crujió con un lamento ancestral, abriéndose paso en un rastro de sal..."</div>
+        <p class="report"><span class="tag">ESCANEANDO:</span> Un gigante planetario descansa tras la puerta. Es la fuente de toda la creación del multiverso.</p>
+        <button class="btn" onclick="ir(10)">Siguiente >></button>
+    </div>
+
+    <div id="arc-10" class="archivo cosmico">
+        <h2 class="exp-header">EXPEDIENTE 10 // THARK'NOK</h2>
+        <div class="lyrics">"Thark’nok el Creador, el origen del todo, ahora es la sombra que nos hunde en el lodo..."</div>
+        <p class="report"><span class="tag">ALERTA MÁXIMA:</span> El Arquitecto se ha vuelto contra su obra. Su objetivo es el reinicio total de la existencia.</p>
+        <button class="btn" onclick="ir(11)">Entrar al Valle >></button>
+    </div>
+
+    <div id="arc-11" class="archivo cian">
+        <h2 class="exp-header">EXPEDIENTE 11 // EL ENTRENAMIENTO</h2>
+        <div class="lyrics">"Entrenad en la luz, preparad la legión, frente al Dios de los mundos no hay compasión..."</div>
+        <p class="report"><span class="tag">MISIÓN:</span> Trascender la lógica de los mortales. El Valle de la Esencia es el único lugar para superar el poder de Thark'nok.</p>
+        <div class="bar-ext"><div class="bar-int"></div></div>
+        <button class="btn" onclick="ir(1)">Reiniciar Terminal</button>
+    </div>
+
+</div>
+
+<script>
+    function ir(n) {
+        // Ocultar todos
+        var list = document.getElementsByClassName('archivo');
+        for (var i = 0; i < list.length; i++) {
+            list[i].style.display = 'none';
+            list[i].classList.remove('activo');
+        }
+        // Mostrar siguiente
+        var target = document.getElementById('arc-' + n);
+        if(target) {
+            target.style.display = 'flex';
+            target.classList.add('activo');
+        }
+    }
+</script>
+
+</body>
+</html>
